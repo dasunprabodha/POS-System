@@ -17,14 +17,14 @@ import javax.validation.constraints.Pattern;
 public class Customer {
     @Id
     private Integer id;
-//    @NotBlank(message = "Name can't be empty or null")
-//    @Pattern(regexp = "[A-Za-z ]+", message = "Invalid name")
+    @NotBlank(message = "Name can't be empty or null")
+    @Pattern(regexp = "[A-Za-z ]+", message = "Invalid name")
     private String name;
-//    @NotBlank(message = "Address can't be empty or null")
-//    @Length(min = 3, message = "Invalid address")
+    @NotBlank(message = "Address can't be empty or null")
+    @Length(min = 3, message = "Invalid address")
     private String address;
-//    @NotBlank(message = "Contact number can't be empty or null")
-//    @Pattern(regexp = "^\\d{3}-\\d{7}$", message = "Invalid contact number")
+    @NotBlank(message = "Contact number can't be empty or null")
+    @Pattern(regexp = "^\\d{3}-\\d{7}$", message = "Invalid contact number")
     private String contact;
 
 }
