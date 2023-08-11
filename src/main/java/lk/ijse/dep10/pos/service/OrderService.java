@@ -1,7 +1,9 @@
 package lk.ijse.dep10.pos.service;
 
 import lk.ijse.dep10.pos.dao.ItemDao;
+import lk.ijse.dep10.pos.dao.OrderDao;
 import lk.ijse.dep10.pos.model.Item;
+import lk.ijse.dep10.pos.model.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,25 +14,16 @@ import java.util.List;
 @Service
 public class OrderService {
     @Autowired
-    ItemDao itemDao;
+    OrderDao orderDao;
 
-
-    public ResponseEntity<String> saveItem(Item item) {
-        itemDao.save(item);
+    public ResponseEntity<String> saveOrder(Order order) {
+        orderDao.save(order);
         return new ResponseEntity<>("success", HttpStatus.CREATED);
 
     }
 
-    public void deleteItem(String itemCode) {
-        itemDao.deleteById(itemCode);
-    }
-
-    public List<Item> findItems(String query) {
-        return itemDao.findAll();
-    }
-
-
-    public void updateItem(Item item) {
-        itemDao.save(item);
+    public List<Order> findOrders(String query) {
+        return orderDao.findAll();
     }
 }
+

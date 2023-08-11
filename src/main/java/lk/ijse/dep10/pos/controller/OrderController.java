@@ -1,7 +1,9 @@
 package lk.ijse.dep10.pos.controller;
 
 import lk.ijse.dep10.pos.model.Item;
+import lk.ijse.dep10.pos.model.Order;
 import lk.ijse.dep10.pos.service.ItemService;
+import lk.ijse.dep10.pos.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,32 +15,21 @@ import java.util.List;
 
 @CrossOrigin
 @Repository
-@RequestMapping("/api/v1/items")
+@RequestMapping("/api/v1/orders")
 public class OrderController {
 
     @Autowired
-    ItemService itemService;
+    OrderService orderService;
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public ResponseEntity<String> saveItem(@RequestBody @Valid Item item){
-        return  itemService.saveItem(item);
+    public ResponseEntity<String> saveOrder(@RequestBody @Valid Order order){
+        return  orderService.saveOrder(order);
     }
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/{itemCode}")
-    public void deleteItem(@PathVariable("itemCode") String itemCode) {
-        itemService.deleteItem(itemCode);
-    }
+
     @GetMapping
-    public List<Item> getItems(@RequestParam(value = "q", required = false)
-                                       String query)  {
+    public List<Order> getOrders(@RequestParam(value = "q", required = false)
+                               String query)  {
         if (query == null) query = "";
-        return itemService.findItems(query);
-    }
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping("/{itemCode}")
-    public void updateItem(@PathVariable("itemCode") String  itemCode,
-                               @RequestBody @Valid Item item) {
-        item.setCode(itemCode);
-        itemService.updateItem(item);
+        return orderService.findOrders(query);
     }
 }
